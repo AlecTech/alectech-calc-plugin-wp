@@ -12,6 +12,12 @@
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  */
+
+// short hand for the calc function
+add_shortcode('tech-calc', 'alectechCalculator');
+
+//output for the calculator function
+
 function alectechCalculator()
  {
      // Set result to false so we can check later if it should be output.
@@ -38,6 +44,10 @@ if ( !empty( $_POST ) ) // Check if there are any values in our array!
       break;
   }
 }
+
+// this is not going to be echo
+//start buffer
+ob_start();
 ?>
 <form method="POST" action="#">
   <label for="num1">
@@ -82,4 +92,11 @@ if ( !empty( $_POST ) ) // Check if there are any values in our array!
     <?php echo $result; ?>
   </p>
 <?php endif;
+
+    // stop Buffer
+    $otputString = ob_get_clean();
+
+    //shortcode
+
+    return $otputString;
  }
